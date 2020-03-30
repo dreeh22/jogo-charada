@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Jogo</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+	
+
+
+</head>
+<body style="background: #f1f1f1;">
+
+	<form method="post">
+
+		<header style="box-sizing: border-box">
+
+			<div class="jumbotron bg-dark text-light"
+				style="padding: 5px 30px; box-sizing: border-box;">
+				<h1 class="display-4">Olá, Seja Bem-Vindo!</h1>
+				<p class="lead">Este é um simples Jogo de adivinhação para
+					demonstrar meus conhecimentos básicos em java.</p>
+				<hr class="my-4">
+				<h4>Informe seu nome para começar</h4>
+
+				<div class="form-group">
+					<input type="text" class="form-control" id="nome" name="nome" placeholder="Seu nome">
+
+				</div>
+			</div>
+
+		</header>
+
+		
+
+		<main>
+		
+			<!-- MENSAGENS DE VALIDAÇÃO -->
+		
+			<h1 style="margin-left: 25px; margin-top: -15px; margin-bottom: 15px;">Charadas</h1>
+			
+			<div th:if="${mensagem != null}" style="padding:0 27px;">
+			
+	            <div class="alert alert-info alert-dismissible fade show" role="alert">
+	            
+	                <span th:text="${mensagem}"></span>
+	                
+		                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	   					 	<span aria-hidden="true">&times;</span>
+	  					</button>
+	  					
+	            </div>
+	            
+        	</div>
+        	
+        	<div th:if="${mensagemErro != null}" style="padding:0 27px;">
+        	
+	            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	            
+	                <span th:text="${mensagemErro}"></span>
+	                
+	                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+   					 	<span aria-hidden="true">&times;</span>
+  					</button>
+  					
+	            </div>
+	            
+        	</div>
+        	
+        	<!-- CHARADAS PARA RESPONDER -->
+			
+			<div class="row"
+			
+				style="margin: 10px; display: flex; flex: 1; flex-wrap: wrap; align-content: stretch;">
+
+				<div class="col-sm-6" style="margin-bottom: 10px;">
+
+					<div class="card">
+
+						<div class="card-header bg-primary text-light"
+							style="font-weight: bold;">Charada 1</div>
+
+						<div class="card-body">
+
+							<p class="card-text" style="font-weight: bold;">
+								Qual é o
+								animal que anda com as patas?
+							</p>
+
+
+							<label for="input1">Selecione a Resposta</label> 
+							<select id="input1" class="form-control" name="resposta1">
+
+								<option selected>Escolher...</option>
+
+								<option value="Tubarão">Tubarão</option>
+								<option value="Cavalo">Cavalo</option>
+								<option value="Pato">Pato</option>
+
+							</select>
+
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-sm-6" style="margin-bottom: 10px;">
+
+					<div class="card">
+
+						<div class="card-header bg-danger text-light" style="font-weight: bold;">Charada 2</div>
+
+						<div class="card-body">
+
+							<p class="card-text" style="font-weight: bold;">
+								Qual inseto
+								que inventou a fila?
+							</p>
+
+							<label for="input2">Selecione a Resposta</label> 
+							<select id="input2" class="form-control" name="resposta2">
+
+								<option selected>Escolher...</option>
+
+								<option value="Formiga">Formiga</option>
+								<option value="Mosca">Mosca</option>
+								<option value="Grilo">Grilo</option>
+
+							</select>
+
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-sm-6" style="margin-bottom: 10px;">
+
+					<div class="card">
+
+						<div class="card-header bg-warning text-light" style="font-weight: bold;">Charada 3</div>
+
+						<div class="card-body">
+
+							<p class="card-text" style="font-weight: bold;">
+								Qual é o
+								animal que traz sempre a casa às costas?
+							</p>
+
+							<label for="input3">Selecione a Resposta</label> 
+							<select id="input3" class="form-control" name="resposta3">
+
+								<option selected>Escolher...</option>
+
+								<option value="Tatu">Tatu</option>
+								<option value="Caracol">Caracol</option>
+								<option value="Abelha">Abelha</option>
+
+							</select>
+
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-sm-6" style="margin-bottom: 10px;">
+
+					<div class="card">
+
+						<div class="card-header bg-success text-light"
+							style="font-weight: bold;">Charada 4</div>
+
+						<div class="card-body">
+
+							<p class="card-text" style="font-weight: bold;">
+								Tem olhos de
+								gato e nao é gato. O que é?
+							</p>
+
+
+
+							<label for="input4">Selecione a Resposta</label> 
+							<select id="input4" class="form-control" name="resposta4">
+
+								<option selected>Escolher...</option>
+
+								<option value="Gata">Gata</option>
+								<option value="Leão">Leão</option>
+								<option value="Tigre">Tigre</option>
+
+							</select>
+
+						</div>
+					</div>
+
+				</div>
+
+
+			</div>
+			
+		<!-- BOTÃO PARA ACIONAR A MODAL DE CONFIRMAÇÃO E VERIFICAR RESPOSTAS-->
+		
+		<button type="button" style="margin-left: 25px; margin-top: 10px;" class="btn btn-dark" data-toggle="modal" data-target="#modalExemplo">Salvar</button>
+		<a role="button" style="margin-left: 25px; margin-top: 10px;" class="btn btn-primary" href="/participantes" >Verificar Respostas</a>
+
+
+	<!-- MODAL DE CONFIRMAÇÃO -->
+
+	<div class="modal fade"  id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	
+		<div class="modal-dialog modal-lg" role="document">
+		
+			<div class="modal-content">
+			
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Fechar">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				
+				<div class="modal-body text-center">
+				
+				<h4>Parabéns!! Obrigado por participar de nosso jogo de charadas.</h4>
+				
+				
+					<!-- <table class="table" >
+						  <thead>
+						    <tr>
+						      <th>#</th>
+						      <th>Resposta Selecionada</th>
+						      <th>Resposta Correta</th>
+						      <th>Acertou?</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+						      <td>1</td>
+						      <td><span th:text="${jogo?.resposta1}"></span></td>
+						      <td>Pato</td>
+						      <td>
+						      <span th:if="${jogo?.resposta1 == 'Pato' }">Sim</span>
+						      <span th:if="${jogo?.resposta1 != 'Pato' }">Não</span>
+						      </td>
+						    </tr>
+						    <tr>
+						      <td>2</td>
+						      <td><span th:text="${jogo?.resposta2}"></span></td>
+						      <td>Formiga</td>
+						      <td>
+						      <span th:if="${jogo?.resposta2 == 'Formiga' }">Sim</span>
+						      <span th:if="${jogo?.resposta2 != 'Formiga' }">Não</span>
+						      </td>
+						    </tr>
+						    <tr>
+						      <td>3</td>
+						      <td><span th:text="${jogo?.resposta3}"></span></td>
+						      <td>Caracol</td>
+						      <td>
+						      <span th:if="${jogo?.resposta3 == 'Caracol' }">Sim</span>
+						      <span th:if="${jogo?.resposta3 != 'Caracol' }">Não</span>
+						      </td>
+						    </tr>
+						    <tr>
+						      <td>4</td>
+						      <td><span th:text="${jogo?.resposta4}"></span></td>
+						      <td>Gata</td>
+						      <td>
+						      <span th:if="${jogo?.resposta4 == 'Gata' }">Sim</span>
+						      <span th:if="${jogo?.resposta4 != 'Gata' }">Não</span>
+						      </td>
+						    </tr>
+						  </tbody>
+					</table>-->
+				
+				</div>
+				
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary">OK</button>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+	</div>
+	
+
+		</main>
+		
+		
+	</form>
+
+
+	<script>
+	
+	<!-- SCRIPT PARA ABRIR MODAL -->
+	
+	$('body').on('hidden.bs.modal', '#modalExemplo', function (event) {
+        $(this).removeData('#modalExemplo');
+        $('#modalExemplo').modal('handleUpdate');
+        cache: false
+    });
+	
+
+	</script>
+
+</body>
+</html>
